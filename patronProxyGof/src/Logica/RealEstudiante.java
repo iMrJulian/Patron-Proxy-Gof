@@ -9,8 +9,11 @@ package Logica;
  *
  * @author estudiantes
  */
-public interface Estudiante { 
-    
-    public void doSomething();
+public class RealEstudiante implements Estudiante{
+
+    @Override
+    public void doSomething() {
+        System.out.println("Haciendo algo");
+    }
     
 }

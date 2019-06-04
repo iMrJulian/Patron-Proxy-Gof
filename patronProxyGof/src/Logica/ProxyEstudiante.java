@@ -9,8 +9,11 @@ package Logica;
  *
  * @author estudiantes
  */
-public interface Estudiante { 
+public class ProxyEstudiante implements Estudiante{
     
-    public void doSomething();
+    @Override
+    public void doSomething() {
+        
+    }
     
 }

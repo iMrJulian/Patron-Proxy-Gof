@@ -12,8 +12,8 @@ package Logica;
 public class RealEstudiante implements Estudiante{
 
     @Override
-    public void doSomething() {
-        System.out.println("Haciendo algo");
+    public String doSomething() {
+        return "Haciendo algo";
     }
     
 }

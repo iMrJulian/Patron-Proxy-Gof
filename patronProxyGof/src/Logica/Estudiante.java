@@ -11,6 +11,6 @@ package Logica;
  */
 public interface Estudiante { 
     
-    public void doSomething();
+    public String doSomething();
     
 }

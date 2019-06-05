@@ -10,10 +10,11 @@ package Logica;
  * @author estudiantes
  */
 public class ProxyEstudiante implements Estudiante{
+    Estudiante estudiante = new RealEstudiante();
     
     @Override
-    public void doSomething() {
-        
+    public String doSomething() {
+        return estudiante.doSomething();
     }
     
 }

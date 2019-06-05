@@ -5,9 +5,14 @@
  */
 package servidor;
 
+import Logica.Estudiante;
+import Logica.ProxyEstudiante;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.Socket;
 import java.util.LinkedList;
 
@@ -21,17 +26,19 @@ public class HiloCliente implements Runnable {
     private LinkedList<Socket> usuarios;
     private DataInputStream dataInput;
     private DataOutputStream dataOutput;
-    protected String[][] matriz;
-    protected String nombre;
-    protected int id;
-    protected int turno;
+    BufferedReader input;
+    PrintStream output;
+    Estudiante estudiante = new ProxyEstudiante();
 
     public HiloCliente(Socket socket, LinkedList usuarios) {
         try {
             this.socket = socket;
             this.usuarios = usuarios;
-            dataInput = new DataInputStream(socket.getInputStream());
-            dataOutput = new DataOutputStream(socket.getOutputStream());
+            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            output = new PrintStream(socket.getOutputStream());
+            String texto = input.readLine();
+            System.out.println(texto);
+            output.println(estudiante.doSomething());
 
         } catch (IOException e) {
 
@@ -41,21 +48,6 @@ public class HiloCliente implements Runnable {
 
     @Override
     public void run() {
-        try {       
-            dataOutput.writeInt(id % 2);
-            while (true) {
-                String texto = dataInput.readUTF();
-                System.out.println(texto);
-                for (Socket usuario : usuarios) {
-                    if (!usuario.equals(this.socket)) {
-                        System.out.println(usuario + " : " + this.socket);
-                        dataOutput = new DataOutputStream(usuario.getOutputStream());
-                        dataOutput.writeUTF(texto);
-                    }
-                }
-            }
-        } catch (IOException ex) {
 
-        }
     }
 }

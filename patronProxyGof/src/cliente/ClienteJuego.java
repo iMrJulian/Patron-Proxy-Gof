@@ -17,6 +17,7 @@ public class ClienteJuego {
     public ClienteJuego() {
         try {
             socket = new Socket("localhost", 8085);
+            new ControlCliente(socket);
         } catch (Exception e) {
             e.printStackTrace();
         }

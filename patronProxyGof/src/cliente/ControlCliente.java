@@ -25,6 +25,13 @@ public class ControlCliente implements Runnable {
         try {
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
+            
+            dataOutput.writeBytes("DoSomething");
+            
+            System.out.println(dataInput.readUTF());
+            String texto = dataInput.readLine();
+            System.out.println(texto);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
